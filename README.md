@@ -30,28 +30,22 @@ Ensure you have Python and Django installed.
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Run migrations:
+3. Run migrations:
    ```bash
    python manage.py migrate
    ```
 
-5. Start the development server:
+4. Start the development server:
    ```bash
    python manage.py runserver
    ```
-
-6. Open your browser and go to:
+   
+5. Open your browser and go to:
    ```
    http://127.0.0.1:8000/
    ```
 
 ## Usage
-- Create an account or log in.
 - Add new tasks and manage them efficiently.
 - Mark tasks as completed or delete them as needed.
 
