@@ -1,6 +1,6 @@
-# MyTodo
+# MyTaskFlow
 
-MyTodo is a simple and efficient to-do list application built using Django. It helps users organize, manage, and track their daily tasks seamlessly.
+MyTaskFlow is a simple and efficient to-do list application built using Django. It helps users organize, manage, and track their daily tasks seamlessly.
 
 ## Features
 - Add, update, and delete tasks
