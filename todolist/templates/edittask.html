@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Edit Task{% endblock title %}
+
+{% block body %}
+<div class="d-flex justify-content-center align-items-center vh-80">
+    <div class="card p-4 shadow-lg border-0" style="width: 30rem; border-radius: 12px;">
+        <div class="text-center">
+            <h3 class="text-primary fw-bold">✏️ Edit Task</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-semibold">Task Title</label>
+                    <input type="text" class="form-control p-2" id="title" name="title" value="{{ task.taskTitle }}" required>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary px-4 py-2 mb-2">✅ Update Task</button>
+                    <a href="{% url 'viewtask' %}" class="btn btn-outline-secondary px-4 py-2 mb-2">🚫 Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 🔥 Custom Styles for Effects -->
+<style>
+    .vh-80 {
+        height: 80vh;
+    }
+
+    .card {
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: background-color 0.3s, transform 0.2s ease-in-out;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .btn-outline-secondary {
+        border-color: #6c757d;
+        color: #6c757d;
+        transition: background-color 0.3s, transform 0.2s ease-in-out;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: white;
+        transform: scale(1.05);
+    }
+
+    .btn {
+        font-size: 16px;
+    }
+</style>
+{% endblock %}

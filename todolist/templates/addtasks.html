@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %} Add Task{% endblock %}
+{% block addactive %}active{% endblock %}
+{% block body %}
+  {% if success %}
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check-circle-fill" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+      </symbol>
+    </svg>
+
+    <!-- Success Alert with a smaller check-circle icon -->
+    <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+      <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:" style="width: 1.5em; height: 1.5em;">
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      <div>
+        <strong>Success!</strong> Your task has been added successfully.
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+
+  <div class="container text-center my-3">
+    <h2 class="text-center">Add Your Task</h2>
+    <div class="d-flex justify-content-center">
+      <form action="/addtask/" method="POST" class="w-50 text-start">
+        {% csrf_token %}
+        <!-- Task Title with Calendar Icon -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Task Title</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="title" name="title" placeholder="Input your task" required />
+          </div>
+        </div>
+
+        <!-- Due Date and Time Picker -->
+        <div class="mb-3">
+          <label for="dueDate" class="form-label">Due Date and Time</label>
+          <input type="text" class="form-control flatpickr" id="dueDate" name="dueDate" placeholder="Select date and time" required />
+        </div>
+
+        <!-- Category Selection -->
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="category" class="form-control" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="work">Work</option>
+            <option value="personal">Personal</option>
+            <option value="wishlist">Wishlist</option>
+            <option value="birthday">Birthday</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Add Task</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Flatpickr Scripts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script>
+    // Initialize Flatpickr for Due Date
+    flatpickr(".flatpickr", {
+      enableTime: true, // Enable time selection
+      dateFormat: "Y-m-d h:i K", // Date and time format with AM/PM notation
+      minDate: "today", // Restrict past dates
+      defaultDate: "today", // Set default date to today
+      time_24hr: false // Use 12-hour format
+    });
+
+    // Initialize Flatpickr for Calendar Icon
+    const calendarIcon = document.getElementById('calendarIcon');
+    flatpickr(calendarIcon, {
+      enableTime: true, // Enable time selection
+      dateFormat: "Y-m-d h:i K", // Date and time format with AM/PM notation
+      minDate: "today", // Restrict past dates
+      defaultDate: "today", // Set default date to today
+      time_24hr: false, // Use 12-hour format
+      onOpen: function(selectedDates, dateStr, instance) {
+        // Focus on the Task Title input after selecting a date
+        document.getElementById('title').focus();
+      },
+      onChange: function(selectedDates, dateStr, instance) {
+        // Set the selected date in the Due Date field
+        document.getElementById('dueDate').value = dateStr;
+      },
+    });
+  </script>
+{% endblock %}
