@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d63h_j+z(+^7@fgn2^*$!9b&l5l4vcqrn+9t5t@*%vuxpdg2n6
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'my-task-flow-one.vercel.app',
+    'my-task-flow-rho.vercel.app',
 ]
 
 
