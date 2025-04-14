@@ -78,10 +78,15 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'taskflow4u',  # from reset/reveal
+        'HOST': 'db.xookxchsarqrtdkgetbn.supabase.co',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
